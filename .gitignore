@@ -13,3 +13,5 @@ Release
 *.suo
 x64
 
+data/logs/
+data/records/evm/
