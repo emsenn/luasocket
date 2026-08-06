@@ -34,7 +34,7 @@ local function make_plat(plat)
     },
     mingw32 = {
       "LUASOCKET_DEBUG",
-      "LUASOCKET_INET_PTON",
+      -- "LUASOCKET_INET_PTON",
       "WINVER=0x0501"
     }
   }
@@ -69,6 +69,7 @@ local function make_plat(plat)
     ["socket.smtp"]    = "src/smtp.lua",
     ltn12              = "src/ltn12.lua",
     socket             = "src/socket.lua",
+    mbox               = "src/mbox.lua",
     mime               = "src/mime.lua"
   }
   if plat == "unix"
@@ -113,6 +114,7 @@ local function make_plat(plat)
   then
     modules["socket.core"].sources[#modules["socket.core"].sources+1] = "src/wsocket.c"
     modules["socket.core"].libraries = { "ws2_32" }
+    modules["socket.core"].libdirs = {}
   end
   return { modules = modules }
 end
@@ -129,6 +131,5 @@ build = {
   copy_directories = {
     "docs"
     , "samples"
-    , "etc"
     , "test" }
 }
